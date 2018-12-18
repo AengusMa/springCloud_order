@@ -1,7 +1,7 @@
-FROM java:8
+FROM mysql:5.6
 
 ADD target/*.jar app.jar
 
-EXPOSE 8080
+EXPOSE 3306
 
 ENTRYPOINT ["java","-jar","/app.jar"]

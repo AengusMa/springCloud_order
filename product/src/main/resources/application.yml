@@ -1,6 +1,6 @@
 spring:
   application:
-    name: productClient
+    name: product
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
