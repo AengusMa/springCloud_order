@@ -34,3 +34,10 @@ docker run -p 8761:8761 -t order/eureka .
 
 ## 问题
 使用Feign的时候需要在启动类上添加@EnableFeignClients(basePackages = "com.mwl.product.client")，如果是跨项目，则basePackages是必须的否则会报错“not Autowired”
+
+
+
+短轮询：利用ajax定期向服务器请求，无论数据是否更新立马返回数据，高并发情况下可能会对服务器和带宽造成压力；
+长轮询：利用comet不断向服务器发起请求，服务器将请求暂时挂起，直到有新的数据的时候才返回，相对短轮询减少了请求次数；
+SSE：服务端推送（Server Send Event），在客户端发起一次请求后会保持该连接，服务器端基于该连接持续向客户端发送数据，从HTML5开始加入。
+Websocket：这是也是一种保持连接的技术，并且是双向的，从HTML5开始加入，并非完全基于HTTP，适合于频繁和较大流量的双向通讯场景
