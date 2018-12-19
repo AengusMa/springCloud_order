@@ -5,6 +5,8 @@ import com.mwl.product.VO.ProductVO;
 import com.mwl.product.VO.ResultVO;
 import com.mwl.product.bean.ProductCategory;
 import com.mwl.product.bean.ProductInfo;
+import com.mwl.product.common.DecreaseStockInput;
+import com.mwl.product.common.ProductInfoOutput;
 import com.mwl.product.service.ProductCategoryService;
 import com.mwl.product.service.ProductService;
 import com.mwl.product.utils.ResultVOUtil;
@@ -78,7 +80,12 @@ public class ProductController {
      * @return
      */
     @PostMapping("/listForOrder")
-    public List<ProductVO> listForOrder(@RequestBody List<String> productIdList) {
-        return null;
+    public List<ProductInfoOutput> listForOrder(@RequestBody List<String> productIdList) {
+        return productService.findList(productIdList);
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList) {
+        productService.decreaseStock(decreaseStockInputList);
     }
 }
