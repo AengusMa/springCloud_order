@@ -31,3 +31,6 @@ mvn clean package
 - 然后在项目根目录下运行docker命令：  
 docker run -p 8080:8080 -t order/product .
 docker run -p 8761:8761 -t order/eureka .
+
+## 问题
+使用Feign的时候需要在启动类上添加@EnableFeignClients(basePackages = "com.mwl.product.client")，如果是跨项目，则basePackages是必须的否则会报错“not Autowired”

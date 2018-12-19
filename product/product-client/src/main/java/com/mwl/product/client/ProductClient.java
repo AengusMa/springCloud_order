@@ -3,6 +3,7 @@ package com.mwl.product.client;
 import com.mwl.product.common.DecreaseStockInput;
 import com.mwl.product.common.ProductInfoOutput;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,4 +21,7 @@ public interface ProductClient {
 
     @PostMapping("/product/decreaseStock")
     void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
+
+    @GetMapping("/msg")
+    String productMsg();
 }
