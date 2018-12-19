@@ -1,6 +1,6 @@
 package com.mwl.order.controller;
 
-import com.mwl.order.client.ProductClient;
+import com.mwl.product.client.ProductClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
