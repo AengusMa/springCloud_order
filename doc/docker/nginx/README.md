@@ -1,6 +1,6 @@
 docker build -t test/nginx .
 运行（不挂载共享目录）
-docker run -d -p 8080:80 --name test-nginx test/nginx
+docker run -d -p 80:80 --name test-nginx test/nginx
 
 
 docker run -d -p 8080:80 --name test-nginx -v $PWD/website:/var/www/html/website test/nginx nginx
