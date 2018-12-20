@@ -1,7 +1,7 @@
 -- 创建数据库
-create database `order` default character set utf8 collate utf8_general_ci;
+create database `docker_order` default character set utf8 collate utf8_general_ci;
 
-use order;
+use docker_order;
 
 -- 类目
 create table `product_category` (
