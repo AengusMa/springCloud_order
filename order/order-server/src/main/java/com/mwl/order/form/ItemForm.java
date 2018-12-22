@@ -1,7 +1,8 @@
 package com.mwl.order.form;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author mawenlong
