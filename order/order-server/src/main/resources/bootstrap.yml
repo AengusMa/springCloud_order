@@ -7,6 +7,10 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: remote
+    stream:
+      binders:
+        outputMessage:
+          group: order
   output:
     ansi:
       enabled: always

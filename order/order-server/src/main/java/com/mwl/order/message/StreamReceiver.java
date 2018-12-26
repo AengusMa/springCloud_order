@@ -1,9 +1,11 @@
 package com.mwl.order.message;
 
-import com.netflix.eureka.util.MeasuredRate;
+import com.mwl.order.dto.OrderDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,9 +17,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class StreamReceiver {
 
-    @StreamListener("myMessage")
-    public void process(Object message) {
-      log.info("StreamReceiver:{}" , message);
+    @StreamListener(StreamClient.OUTPUT)
+    public void process(Message<OrderDTO> message) {
+        log.info("outputMessage---->StreamReceiver:{}", message.getPayload().getBuyerName());
     }
 
+    @StreamListener(StreamClient.INPUT)
+    public void processInput(Message<String> message) {
+        log.info("inputMessage---->StreamReceiver:{}", message.getPayload());
+    }
 }
