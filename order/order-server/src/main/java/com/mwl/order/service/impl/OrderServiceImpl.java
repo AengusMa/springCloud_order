@@ -48,6 +48,11 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
         List<ProductInfoOutput> productInfoList = productClient.listForOrder(productIdList);
 
+        // TODO
+        //读redis（库存保存在其中）
+        //减库存并将新值设置到redis
+        //订单入库异常手动回滚redis
+
         //计算总价
         BigDecimal orderAmout = new BigDecimal(BigInteger.ZERO);
         for (OrderDetail orderDetail : orderDTO.getOrderDetailList()) {
