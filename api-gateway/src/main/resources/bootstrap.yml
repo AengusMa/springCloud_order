@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: remote
+eureka:
+  client:
+    service-url:
+      defaultZone: http://111.231.228.108:8761/eureka/
+zuul:
+  routes:
+    myProduct:
+      path: /myProduct/**
+      serviceId: product
+      #简洁的写法
+#      product: /myProduct/**
+  ignored-patterns:
+    - /**/prodcut/listForOrder
+
+management:
+  security:
+    enabled: false

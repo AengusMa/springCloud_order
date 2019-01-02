@@ -6,7 +6,7 @@ docker build -t test/mysql .
 docker images  
 ## 运行
 - 映射到13306端口
-docker run --name test-mysql -d -p 13306:3306 test/mysql 
+docker run --name test-mysql -d -p 3306:3306 test/mysql 
 - 查看是否运行成功
     - 查看容器是否运行
     docker ps 
@@ -19,3 +19,5 @@ docker run --name test-mysql -d -p 13306:3306 test/mysql
     select * from user;
 ## 注意
 setup.sh文件的行分割符设置为“LF”
+
+

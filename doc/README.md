@@ -12,7 +12,6 @@
         - CREATE DATABASE `springcloud_order` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 - 数据库编码问题：
         - 显示数据库编码：
-  
 show variables like "%character%";
 
         - 修改编码：  
@@ -24,11 +23,25 @@ set character_set_results = utf8;
 set collation_connection = utf8_general_ci;
 set collation_database = utf8_general_ci;
 set collation_server = utf8_general_ci;
-
     - 修改数据库编码：  
   
 alter database app_relation character set utf8;
 如果还有乱码：在建表的时候添加：default charset utf8 collate utf8_unicode_ci;
+## 乱码问题
+显示编码格式
+show variables like '%char%';
+一次性
+　　set character_set_client = utf8;
+    set character_set_server = utf8;
+    set character_set_connection = utf8;
+    set character_set_database = utf8;
+    set character_set_results = utf8;
+    set collation_connection = utf8_general_ci;
+    set collation_database = utf8_general_ci;
+    set collation_server = utf8_general_ci;
+修改表的编码方式  
+alter table 表名 convert to character set utf8;
+
 
 ## 部署运行：
 

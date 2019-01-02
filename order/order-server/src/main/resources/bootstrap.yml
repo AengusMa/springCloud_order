@@ -11,14 +11,6 @@ spring:
       binders:
         outputMessage:
           group: order
-  output:
-    ansi:
-      enabled: always
-  rabbitmq:
-    host: 111.231.228.108
-  redis:
-    host: 111.231.228.108
-    port: 6379
 eureka:
   client:
     service-url:

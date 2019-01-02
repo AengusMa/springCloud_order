@@ -7,11 +7,6 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: remote
-  output:
-    ansi:
-      enabled: always
-  rabbitmq:
-    host: 111.231.228.108
 eureka:
   client:
     service-url:
