@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletRequest;
  * @author mawenlong
  * @date 2019/01/03
  * <p>
- * 权限校验(不使用)
+ * 权限校验
  */
 @Component
-public class AuthFilter extends ZuulFilter {
+public class AuthSellerFilter extends ZuulFilter {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -38,6 +38,11 @@ public class AuthFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+        RequestContext requestContext = RequestContext.getCurrentContext();
+        HttpServletRequest request = requestContext.getRequest();
+        if ("/order/order/finish".equals(request.getRequestURI())) {
+            return true;
+        }
         return false;
     }
 
@@ -47,26 +52,15 @@ public class AuthFilter extends ZuulFilter {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
         /**
-         * /order/create 买家访问(cookie里有openid)
          * /order/finish 卖家访问（cookie有token，并且redis有值）
-         * /product/list 都可访问
          */
-        if ("/order/order/create".equals(request.getRequestURI())) {
-            Cookie cookie = CookieUtil.get(request, "openid");
-            if (cookie == null || StringUtils.isEmpty(cookie.getValue())) {
-                requestContext.setSendZuulResponse(false);
-                requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
-            }
-        }
-        if ("/order/order/finish".equals(request.getRequestURI())) {
-            Cookie cookie = CookieUtil.get(request, "token");
-            if (cookie == null
-                || StringUtils.isEmpty(cookie.getValue())
-                || StringUtils.isEmpty(
-                    redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_TEMPLATE, cookie.getValue())))) {
-                requestContext.setSendZuulResponse(false);
-                requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
-            }
+        Cookie cookie = CookieUtil.get(request, "token");
+        if (cookie == null
+            || StringUtils.isEmpty(cookie.getValue())
+            || StringUtils.isEmpty(
+                redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_TEMPLATE, cookie.getValue())))) {
+            requestContext.setSendZuulResponse(false);
+            requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
         }
         return null;
     }

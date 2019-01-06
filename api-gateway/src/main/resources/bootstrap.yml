@@ -21,7 +21,8 @@ zuul:
 #      product: /myProduct/**
   ignored-patterns:
     - /**/prodcut/listForOrder
-
+#  全部服务忽略敏感头（全部服务都可传递cookie）
+  sensitive-headers:
 management:
   security:
     enabled: false
