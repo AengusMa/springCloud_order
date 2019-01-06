@@ -69,3 +69,14 @@ create table `order_detail` (
     primary key (`detail_id`),
     key `idx_order_id` (`order_id`)
 );
+
+create table `user_info`(
+  `id` varchar(32) not null ,
+  `username` varchar(32) default '',
+  `password` varchar(32) default '',
+  `openid` varchar(32) default '',
+  `role` tinyint(1) not null ,
+  `create_time` timestamp not null default current_timestamp ,
+  `update_time` timestamp  not null default current_timestamp on update current_timestamp ,
+  primary key (`id`)
+);
