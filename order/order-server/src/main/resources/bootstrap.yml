@@ -17,3 +17,18 @@ eureka:
       defaultZone: http://111.231.228.108:8761/eureka/
   instance:
     hostname: localhost
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2000
+#    getProductInfoList:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2000
+feign:
+  hystrix:
+    enabled: true
