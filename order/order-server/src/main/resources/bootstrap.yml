@@ -11,6 +11,11 @@ spring:
       binders:
         outputMessage:
           group: order
+  zipkin:
+    base-url: http://111.231.228.108:9411
+  sleuth:
+    sampler:
+      probability: 1
 eureka:
   client:
     service-url:
@@ -32,3 +37,5 @@ eureka:
 feign:
   hystrix:
     enabled: true
+logging:
+  level: debug
